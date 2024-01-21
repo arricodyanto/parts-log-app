@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('units', function (Blueprint $table) {
             $table->uuid('id_unit')->primary();
             $table->string('name');
-            $table->string('profile_photos')->nullable();
+            $table->string('unit_photo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

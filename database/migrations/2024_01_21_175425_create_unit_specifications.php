@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('unit_specifications', function (Blueprint $table) {
             $table->uuid('id_unit_specification')->primary();
-            $table->uuid('id_unit');
-            $table->foreign('id_unit')->references('id_unit')->on('units')->onDelete('cascade');
+            $table->uuid('unit_id');
+            $table->foreign('unit_id')->references('id_unit')->on('units')->onDelete('cascade');
             $table->string('type');
             $table->string('specification');
             $table->timestamps();
