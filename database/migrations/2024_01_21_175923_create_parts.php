@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('parts', function (Blueprint $table) {
-            $table->uuid('id_parts')->primary();
+            $table->uuid('id_part')->primary();
             $table->uuid('unit_id');
             $table->foreign('unit_id')->references('id_unit')->on('units')->onDelete('cascade');
             $table->integer('scale');
