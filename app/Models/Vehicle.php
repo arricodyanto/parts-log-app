@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Unit extends Model
+class Vehicle extends Model
 {
     use HasFactory, HasUuids, SoftDeletes;
 
-    protected $primaryKey = 'id_unit';
+    protected $primaryKey = 'id_vehicle';
     protected $fillable = [
         'name',
-        'unit_photo',
+        'vehicle_photo',
     ];
 }

@@ -13,12 +13,17 @@ return new class extends Migration
     {
         Schema::create('parts', function (Blueprint $table) {
             $table->uuid('id_part')->primary();
-            $table->uuid('unit_id');
-            $table->foreign('unit_id')->references('id_unit')->on('units')->onDelete('cascade');
-            $table->integer('scale');
-            $table->text('description')->nullable();
-            $table->string('name');
-            $table->integer('price');
+            $table->uuid('vehicle_id');
+            $table->foreign('vehicle_id')->references('id_vehicle')->on('vehicles')->onDelete('cascade');
+            $table->integer('hours_meter');
+            $table->text('desc')->nullable();
+            $table->string('group_desc')->nullable();
+            $table->string('part_no')->nullable();
+            $table->text('part_desc')->nullable();
+            $table->integer('qty');
+            $table->integer('repl');
+            $table->string('unit');
+            $table->double('price');
             $table->timestamps();
             $table->softDeletes();
         });

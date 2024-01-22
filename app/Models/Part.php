@@ -13,11 +13,16 @@ class Part extends Model
     use HasFactory, HasUuids, SoftDeletes;
 
     protected $fillable = [
-        'unit_id',
-        'scale',
-        'description',
-        'name',
-        'price'
+        'vehicle_id',
+        'hours_meter',
+        'decs',
+        'group_desc',
+        'part_no',
+        'part_desc',
+        'qty',
+        'rpl',
+        'unit',
+        'price',
     ];
 
     /**
@@ -27,6 +32,6 @@ class Part extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(Unit::class, 'id_unit');
+        return $this->belongsTo(Vehicle::class, 'id_unit');
     }
 }

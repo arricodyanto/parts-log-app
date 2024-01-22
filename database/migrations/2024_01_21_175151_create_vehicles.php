@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('unit_specifications', function (Blueprint $table) {
-            $table->uuid('id_unit_specification')->primary();
-            $table->uuid('unit_id');
-            $table->foreign('unit_id')->references('id_unit')->on('units')->onDelete('cascade');
-            $table->string('type');
-            $table->string('specification');
+        Schema::create('vehicles', function (Blueprint $table) {
+            $table->uuid('id_vehicle')->primary();
+            $table->string('name');
+            $table->string('vehicle_photo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('unit_specifications');
+        Schema::dropIfExists('vehicles');
     }
 };
