@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .brand-text {
+        @apply text-primary font-brand font-medium;
+    }
+}
