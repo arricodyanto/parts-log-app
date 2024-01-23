@@ -13,7 +13,7 @@
                             {{--  menu  --}}
                             <nav class="flex gap-4 items-center">
                                 <ul class="hidden lg:flex gap-2">
-                                    <li class="nav-menu"><a href="#">Home</a></li>
+                                    <li class="nav-menu active"><a href="#">Home</a></li>
                                     <li class="nav-menu"><a href="#">Vehicles Management</a></li>
                                     <li class="nav-menu"><a href="#">Parts Management</a></li>
                                     <li class="nav-menu"><a href="#">Accounts Management</a></li>
