@@ -1,5 +1,11 @@
 import "./bootstrap";
 
+import Alpine from "alpinejs";
+
+window.Alpine = Alpine;
+
+Alpine.start();
+
 // preloader
 $(function () {
     $(".preload").fadeOut(600, () => {
