@@ -20,16 +20,15 @@
                 <li>
                     <a class="justify-between">
                         Profile
-                        <span class="max-w-28 truncate bg-gray-50 px-3 rounded-lg">{{Auth::auth()->name}}</span>
+                        <span class="max-w-28 truncate bg-gray-50 px-3 rounded-lg">{{Auth::user()->name}}</span>
                     </a>
                 </li>
                 <li>
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
-                        {{-- <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <button type="submit" class="w-42 border border-solid border-gray-600">
                             {{ __('Log Out') }}
-                        </button> --}}
-                        <a type="submit" href="{{route('logout')}}">{{ __('Log Out') }}</a>
+                        </button>
                     </form>
                 </li>
             </ul>

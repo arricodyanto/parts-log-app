@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'id_user' => Str::uuid(),
+                'id' => Str::uuid(),
                 'name' => 'Super Admin',
                 'email' => 'super@admin.com',
                 'password' => \bcrypt('password'),
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_user' => Str::uuid(),
+                'id' => Str::uuid(),
                 'name' => 'Admin',
                 'email' => 'admin@admin.com',
                 'password' => \bcrypt('password'),

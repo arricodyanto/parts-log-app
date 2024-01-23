@@ -15,7 +15,7 @@ class VehicleSpecificationSeeder extends Seeder
     {
         $vehicle_specs = [
             [
-                'id_vehicle_specs' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'specs' => 'Engine',
                 'specs_value' => '6',
@@ -23,7 +23,7 @@ class VehicleSpecificationSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_vehicle_specs' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'specs' => 'Cylinders',
                 'specs_value' => '6 in line',
@@ -31,7 +31,7 @@ class VehicleSpecificationSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_vehicle_specs' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'specs' => 'Bore (mm)',
                 'specs_value' => '135',
@@ -39,7 +39,7 @@ class VehicleSpecificationSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_vehicle_specs' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'specs' => 'Stroke (mm)',
                 'specs_value' => '150',
@@ -47,7 +47,7 @@ class VehicleSpecificationSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_vehicle_specs' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'specs' => 'Capacity',
                 'specs_value' => '12.88',
@@ -55,7 +55,7 @@ class VehicleSpecificationSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_vehicle_specs' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'specs' => 'Max power (HP/Kw)',
                 'specs_value' => '440/324',
@@ -63,7 +63,7 @@ class VehicleSpecificationSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_vehicle_specs' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'specs' => 'rpm',
                 'specs_value' => '1450-1900',
@@ -71,7 +71,7 @@ class VehicleSpecificationSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_vehicle_specs' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'specs' => 'Max torque (Nm/mKg)',
                 'specs_value' => '2100/214',
@@ -79,7 +79,7 @@ class VehicleSpecificationSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_vehicle_specs' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'specs' => 'rpm',
                 'specs_value' => '900-1470',
@@ -87,7 +87,7 @@ class VehicleSpecificationSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_vehicle_specs' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'specs' => 'Euro 3',
                 'specs_value' => '80 liter',
@@ -95,7 +95,7 @@ class VehicleSpecificationSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_vehicle_specs' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'specs' => 'Fuel System',
                 'specs_value' => 'Unit pump injector',
@@ -103,7 +103,7 @@ class VehicleSpecificationSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_vehicle_specs' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'specs' => 'Speed Limiter',
                 'specs_value' => '90 km/h',
@@ -111,7 +111,7 @@ class VehicleSpecificationSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_vehicle_specs' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => '7f008cb5-52e2-4283-9d78-cc14ea582749',
                 'specs' => 'Engine',
                 'specs_value' => '4',

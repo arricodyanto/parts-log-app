@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('parts', function (Blueprint $table) {
-            $table->uuid('id_part')->primary();
+            $table->uuid('id')->primary();
             $table->uuid('vehicle_id');
-            $table->foreign('vehicle_id')->references('id_vehicle')->on('vehicles')->onDelete('cascade');
+            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
             $table->integer('hours_meter');
             $table->text('desc')->nullable();
             $table->string('group_desc')->nullable();
