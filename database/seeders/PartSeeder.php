@@ -15,7 +15,7 @@ class PartSeeder extends Seeder
     {
         $parts = [
             [
-                'id_part' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'hours_meter' => 250,
                 'desc' => 'Engine Oil - Drain & Refill',
@@ -30,7 +30,7 @@ class PartSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_part' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'hours_meter' => 250,
                 'desc' => '250 SVC Hour Maintenance - Perform',
@@ -45,7 +45,7 @@ class PartSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_part' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'hours_meter' => 250,
                 'desc' => '250 SVC Hour Maintenance - Perform',
@@ -60,7 +60,7 @@ class PartSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_part' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'hours_meter' => 500,
                 'desc' => 'Engine Oil - Drain & Refill',
@@ -75,7 +75,7 @@ class PartSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id_part' => Str::uuid(),
+                'id' => Str::uuid(),
                 'vehicle_id' => 'bc0776ed-39aa-43b8-931e-6fe08d34bc44',
                 'hours_meter' => 500,
                 'desc' => '500 SVC Hour Maintenance - Perform',

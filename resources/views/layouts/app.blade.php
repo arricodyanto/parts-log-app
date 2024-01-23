@@ -28,18 +28,18 @@
     </head>
     <body>
         {{-- preload --}}
-        <div class="preload">
+        {{-- <div class="preload">
             @include('components.preloader')
         </div>
-        <div class="content">
+        <div class="content"> --}}
             @include('components.navbar')
             @include('components.hero')
 
             @yield('content')
-        </div>
+        {{-- </div> --}}
 
         {{-- js --}}
         @vite('resources/js/app.js')
-        @vite('resources/js/vue.js')
+        {{-- @vite('resources/js/vue.js') --}}
     </body>
 </html>

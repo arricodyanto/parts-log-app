@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('vehicle_specifications', function (Blueprint $table) {
-            $table->uuid('id_vehicle_specs')->primary();
+            $table->uuid('id')->primary();
             $table->uuid('vehicle_id');
-            $table->foreign('vehicle_id')->references('id_vehicle')->on('vehicles')->onDelete('cascade');
+            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
             $table->string('specs');
             $table->string('specs_value');
             $table->timestamps();
