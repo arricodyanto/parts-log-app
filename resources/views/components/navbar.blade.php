@@ -16,6 +16,7 @@
                                     <li class="nav-menu"><a href="#">Home</a></li>
                                     <li class="nav-menu"><a href="#">Vehicles Management</a></li>
                                     <li class="nav-menu"><a href="#">Parts Management</a></li>
+                                    <li class="nav-menu"><a href="#">Accounts Management</a></li>
                                 </ul>
                                 <div class="hidden lg:block dropdown dropdown-end">
                                     <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
