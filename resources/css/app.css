@@ -6,9 +6,11 @@
     .brand-text {
         @apply text-primary font-brand font-medium hover:brightness-110 transition;
     }
-
     .nav-menu {
         @apply mx-3 text-sm hover:text-gray-400 font-medium transition;
+    }
+    .active {
+        @apply text-primary;
     }
     .content {
         @apply hidden;

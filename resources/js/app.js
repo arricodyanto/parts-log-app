@@ -8,6 +8,7 @@ $(function () {
     });
 });
 
+// on scroll navbar
 const navbar = document.getElementById("navbar");
 window.onscroll = () => {
     if (window.scrollY > 50) {
