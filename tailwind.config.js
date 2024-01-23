@@ -7,6 +7,13 @@ export default {
         "./resources/**/*.vue",
     ],
     theme: {
+        screens: {
+            xs: "310px",
+            sm: "360px",
+            md: "760px",
+            lg: "1200px",
+            xl: "1440px",
+        },
         fontFamily: {
             sans: ['"Open Sans", sans-serif'],
         },
