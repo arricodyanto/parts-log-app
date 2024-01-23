@@ -33,8 +33,9 @@
         </div>
         <div class="content"> --}}
             @include('components.navbar')
-            @include('components.hero')
+            {{-- @include('components.hero') --}}
 
+            @yield('hero')
             @yield('content')
         {{-- </div> --}}
 
