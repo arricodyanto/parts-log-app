@@ -6,7 +6,10 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Parts Log App</title>
         <link rel="icon" type="image/x-icon" href="{{url('/brand-logo.svg')}}">
-         
+
+        {{-- ngrok connection --}}
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
         {{--  font-family --}}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,14 +21,25 @@
 
         {{-- tailwind connection --}}
         @vite('resources/css/app.css')
-        @vite('resources/js/app.js')
+
+        {{-- jquery for preloader --}}
+        <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+
     </head>
     <body>
-        @include('components.navbar')
-        @include('components.hero')
+        {{-- preload --}}
+        <div class="preload">
+            @include('components.preloader')
+        </div>
+        <div class="content">
+            @include('components.navbar')
+            @include('components.hero')
 
-        <div class="h-[220rem]">
             @yield('content')
         </div>
+
+        {{-- js --}}
+        @vite('resources/js/app.js')
+        @vite('resources/js/vue.js')
     </body>
 </html>
