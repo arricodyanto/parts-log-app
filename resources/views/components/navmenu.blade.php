@@ -18,15 +18,15 @@
             </div>
             <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                 <li>
-                    <a class="justify-between">
+                    <a href="#" class="justify-between">
                         Profile
                         <span class="max-w-28 truncate bg-gray-50 px-3 rounded-lg">{{Auth::user()->name}}</span>
                     </a>
                 </li>
                 <li>
-                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                    <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="w-42 border border-solid border-gray-600">
+                        <button type="submit">
                             {{ __('Log Out') }}
                         </button>
                     </form>
@@ -38,3 +38,6 @@
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
     </button>
 </nav>
+
+<script>
+</script>
