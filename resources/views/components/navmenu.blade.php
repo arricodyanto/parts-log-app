@@ -11,11 +11,19 @@
     </ul>
     @auth
         <div class="hidden lg:block dropdown dropdown-end">
-            <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                <div class="w-10 rounded-full">
-                <img alt="Avatar" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            @if (Auth::user()->avatar == null)
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar placeholder">
+                    <div class="bg-neutral text-neutral-content rounded-full w-12">
+                        <span class="uppercase text-lg">{{Str::charAt(Auth::user()->name, 0)}}</span>
+                    </div>
+                </div> 
+            @else
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-10 rounded-full">
+                        <img alt="Avatar" src="{{asset('images/superadmin.jpg')}}" />
+                    </div>
                 </div>
-            </div>
+            @endif
             <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                 <li>
                     <a href="#" class="justify-between">
