@@ -33,7 +33,7 @@
         </div>
 
         <div class="flex flex-col items-center justify-center mt-4">
-            <x-primary-button class="ms-3 bg-primary w-full hover:bg-primary focus:bg-primary active:bg-primary justify-center hover:bg-opacity-90 mb-4 h-10">
+            <x-primary-button class="bg-primary w-full hover:bg-primary focus:bg-primary active:bg-primary justify-center hover:bg-opacity-90 mb-4 h-10">
                 {{ __('Login') }}
             </x-primary-button>
 
