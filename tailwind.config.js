@@ -13,6 +13,13 @@ export default {
         "./resources/**/*.vue",
     ],
     theme: {
+        container: {
+            center: true,
+            padding: {
+                xs: "0rem",
+                xl: "8rem",
+            },
+        },
         screens: {
             xs: "310px",
             sm: "360px",
@@ -40,7 +47,17 @@ export default {
 
     // daisyui config
     daisyui: {
-        themes: false, // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
+        themes: [
+            // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
+            {
+                light: {
+                    ...require("daisyui/src/theming/themes")["light"],
+                    primary: "#0fa3b1",
+                    secondary: "#d7edf7",
+                    accent: "#f9dc66",
+                },
+            },
+        ],
         darkTheme: "light", // name of one of the included themes for dark mode
         base: true, // applies background color and foreground color for root element by default
         styled: true, // include daisyUI colors and design decisions for all components

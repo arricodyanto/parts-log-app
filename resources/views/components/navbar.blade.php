@@ -3,7 +3,7 @@
         <div class="relative h-auto">
             {{-- navbar  --}}
             <div class="absolute h-[5.2rem] bg-secondary">
-                <div id="navbar" class="fixed w-full z-10 bg-opacity-50 transition ease-in-out">
+                <div id="navbar" class="fixed w-full z-10 bg-opacity-70 transition ease-in-out">
                     <div class="container mx-auto">
                         <div class="flex xs:h-16 md:h-20 mx-3 space-x-3 justify-between items-center">
                             {{--  Logo  --}}
