@@ -98,12 +98,18 @@
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach ($selectedVehicle->vehicleSpecifications as $specifications)
-                            <tr>
-                              <td class="bg-secondary max-w-24">{{$specifications->specs}}</td>
-                              <td>{{$specifications->specs_value}}</td>
-                            </tr>
-                          @endforeach
+                          @if (count($selectedVehicle->vehicleSpecifications) > 0)
+                            @foreach ($selectedVehicle->vehicleSpecifications as $specifications)
+                              <tr>
+                                <td class="bg-secondary max-w-24">{{$specifications->specs}}</td>
+                                <td>{{$specifications->specs_value}}</td>
+                              </tr>
+                            @endforeach
+                          @else
+                              <tr>
+                                <td colspan="2" class="text-center">no data</td>
+                              </tr>
+                          @endif
                         </tbody>
                       </table>
                   </div>
@@ -114,7 +120,6 @@
           <section id="parts" class="mt-8">
             {{-- search --}}
             <form action="{{ route('home') }}" method="get">
-              @csrf
               <label class="form-control max-w-36">
                   <div class="label">
                       <span class="label-text">Pick HM</span>
@@ -147,21 +152,27 @@
                 </thead>
                 <tbody>
                   {{-- sort by hours_meter --}}
-                  @foreach ($sortedParts as $index => $part)
-                    <tr class="hover">
-                        <td class="text-center">{{$index + 1}}</td>
-                        <td class="text-center">HM {{$part->hours_meter}}</td>
-                        <td>{{$part->desc}}</td>
-                        <td>{{$part->group_desc}}</td>
-                        <td>{{$part->part_no}}</td>
-                        <td>{{$part->part_desc}}</td>
-                        <td class="text-center">{{$part->qty}}</td>
-                        <td>{{$part->repl}}%</td>
-                        <td class="text-center">{{$part->unit}}</td>
-                        <td class="text-center">${{$part->price}}</td>
-                        <td class="text-center">${{$part->qty * $part->price}}</td>
+                  @if (count($sortedParts) > 0) 
+                    @foreach ($sortedParts as $index => $part)
+                      <tr class="hover">
+                          <td class="text-center">{{$index + 1}}</td>
+                          <td class="text-center">HM {{$part->hours_meter}}</td>
+                          <td>{{$part->desc}}</td>
+                          <td>{{$part->group_desc}}</td>
+                          <td>{{$part->part_no}}</td>
+                          <td>{{$part->part_desc}}</td>
+                          <td class="text-center">{{$part->qty}}</td>
+                          <td>{{$part->repl}}%</td>
+                          <td class="text-center">{{$part->unit}}</td>
+                          <td class="text-center">${{$part->price}}</td>
+                          <td class="text-center">${{$part->qty * $part->price}}</td>
+                      </tr>
+                    @endforeach
+                  @else
+                    <tr>
+                      <td colspan="11" class="text-center">no data</td>
                     </tr>
-                  @endforeach
+                  @endif
                 </tbody>
               </table>
             </div>
