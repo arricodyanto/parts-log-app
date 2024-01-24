@@ -13,10 +13,12 @@ class HomeController extends Controller
         $vehicles = Vehicle::all();
         $selectedVehicle = Vehicle::findOrFail(request('vehicle_id', $vehicles->last()->id));
 
+        $hours_meter = Part::all()->pluck('hours_meter')->unique()->sort();
+
         $vehicleSpecifications = $selectedVehicle->vehicleSpecifications;
         $parts = $selectedVehicle->parts;
 
-        return view('home', compact('vehicles', 'selectedVehicle', 'vehicleSpecifications', 'parts'));
+        return view('home', compact('vehicles', 'selectedVehicle', 'hours_meter'));
     }
 
 }

@@ -1,6 +1,15 @@
 @php
+    // vehicle select
     $selectedVehicleId = request('id', $selectedVehicle->id);
-    // dd($selectedVehicleId);
+
+    // hours meter select
+    $selectedHM = request('picked_hm', 250); // default value 250 if not provided
+    $sortedParts = $selectedVehicle->parts
+        ->sortBy(['hours_meter', 'asc'])
+        ->filter(function ($part) use ($selectedHM) {
+            return $part->hours_meter <= $selectedHM;
+        })
+        ->values();
 @endphp
 
 @extends('layouts.app')
@@ -68,7 +77,7 @@
                       <span class="label-text">Pick the Available Vehicles</span>
                     </div>
                     <select class="select select-bordered" name="vehicle_id" onchange="this.form.submit()">
-                      @foreach ($vehicles as $vehicle)
+                      @foreach ($vehicles->sortBy('created_at') as $vehicle)
                         <option value="{{ $vehicle->id }}" {{ $selectedVehicleId == $vehicle->id ? 'selected' : '' }}>
                           {{ $vehicle->name }}
                         </option>
@@ -102,21 +111,22 @@
                 <img src="{{asset('images/'.$selectedVehicle->vehicle_photo)}}" alt="vehicles" class="w-full rounded-lg">
               </div>
             </section>
-
           <section id="parts" class="mt-8">
             {{-- search --}}
-            {{-- <input type="text" placeholder="Search here..." class="input input-bordered w-full max-w-xs" /> --}}
-            <label class="form-control max-w-36">
-              <div class="label">
-                <span class="label-text">Pick HM</span>
-              </div>
-              <select class="select select-bordered">
-                {{-- <option disabled selected>Pick one</option> --}}
-                <option selected>250</option>
-                <option>500</option>
-                <option>1000</option>
-              </select>
-            </label>
+            <form action="{{ route('home') }}" method="get">
+              @csrf
+              <label class="form-control max-w-36">
+                  <div class="label">
+                      <span class="label-text">Pick HM</span>
+                  </div>
+                  <select name="picked_hm" class="select select-bordered" onchange="this.form.submit()">
+                    @foreach($hours_meter as $value)
+                        <option value="{{ $value }}" {{ request('picked_hm', 250) == $value ? 'selected' : '' }}>{{ $value }}</option>
+                    @endforeach
+                  </select>
+                  <input type="hidden" name="vehicle_id" value="{{ $selectedVehicle->id }}">
+              </label>
+          </form>
             <div class="overflow-x-auto xs:mt-3 md:mt-6 rounded-lg border">
               <table class="table">
                 <!-- head -->
@@ -137,23 +147,20 @@
                 </thead>
                 <tbody>
                   {{-- sort by hours_meter --}}
-                  @php
-                      $sortedParts = $selectedVehicle->parts->sortBy(['hours_meter', 'asc']);
-                  @endphp
                   @foreach ($sortedParts as $index => $part)
-                      <tr class="hover">
-                          <td class="text-center">{{$index + 1}}</td>
-                          <td class="text-center">HM {{$part->hours_meter}}</td>
-                          <td>{{$part->desc}}</td>
-                          <td>{{$part->group_desc}}</td>
-                          <td>{{$part->part_no}}</td>
-                          <td>{{$part->part_desc}}</td>
-                          <td class="text-center">{{$part->qty}}</td>
-                          <td>{{$part->repl}}%</td>
-                          <td class="text-center">{{$part->unit}}</td>
-                          <td class="text-center">${{$part->price}}</td>
-                          <td class="text-center">${{$part->qty * $part->price}}</td>
-                      </tr>
+                    <tr class="hover">
+                        <td class="text-center">{{$index + 1}}</td>
+                        <td class="text-center">HM {{$part->hours_meter}}</td>
+                        <td>{{$part->desc}}</td>
+                        <td>{{$part->group_desc}}</td>
+                        <td>{{$part->part_no}}</td>
+                        <td>{{$part->part_desc}}</td>
+                        <td class="text-center">{{$part->qty}}</td>
+                        <td>{{$part->repl}}%</td>
+                        <td class="text-center">{{$part->unit}}</td>
+                        <td class="text-center">${{$part->price}}</td>
+                        <td class="text-center">${{$part->qty * $part->price}}</td>
+                    </tr>
                   @endforeach
                 </tbody>
               </table>
