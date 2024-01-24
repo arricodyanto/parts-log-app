@@ -23,8 +23,8 @@ class VehicleSpecification extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function Unit(): BelongsTo
+    public function vehicle(): BelongsTo
     {
-        return $this->belongsTo(Vehicle::class, 'id_vehicle');
+        return $this->belongsTo(Vehicle::class, 'vehicle_id');
     }
 }

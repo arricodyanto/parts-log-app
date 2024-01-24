@@ -1,3 +1,8 @@
+@php
+    $selectedVehicleId = request('id', $selectedVehicle->id);
+    // dd($selectedVehicleId);
+@endphp
+
 @extends('layouts.app')
 
 @section('hero')
@@ -51,57 +56,53 @@
     <section id="content" class="xs:mt-32 md:mt-24 lg:mt-32">
         <div class="container">
           <h1 class="text-center font-semibold text-xl xs:pt-6 md:pt-0">Vehicles Monitoring</h1>
-          <section id="vehicles">
-            <div class="flex xs:flex-col-reverse md:flex-row md:justify-between md:items-end mt-4">
-              {{-- title vehicles --}}
-              <h2 class="text-2xl font-semibold mt-4">IVECO TRAKKER AD 410T44 H</h2>
-  
-              {{-- select vehicles --}}
-              <label class="form-control w-full max-w-xs">
-                <div class="label">
-                  <span class="label-text">Pick the Available Vehicles</span>
-                </div>
-                <select class="select select-bordered">
-                  {{-- <option disabled selected>Pick one</option> --}}
-                  <option selected>IVECO TRAKKER AD 410T44 H</option>
-                  <option>IVECO TRAKKER AD 410T77 A</option>
-                </select>
-              </label>
-            </div>
-            <div class="xs:mt-4 md:mt-8 xs:flex xs:flex-col-reverse md:grid md:grid-cols-2 xs:gap-4 md:gap-8">
-              {{-- specs table --}}
-              <div class="w-full">
-                <div class="overflow-x-auto rounded-lg">
-                  <table class="table border">
-                    <!-- head -->
-                    <thead>
-                      <tr class="bg-primary text-center text-white">
-                        <th colspan="2">{truck-name} Specifications</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- row 1 -->
-                      <tr>
-                        <td class="bg-secondary">Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                      </tr>
-                      <!-- row 2 -->
-                      <tr>
-                        <td class="bg-secondary">Hart Hagerty</td>
-                        <td>Desktop Support Technician</td>
-                      </tr>
-                      <!-- row 3 -->
-                      <tr>
-                        <td class="bg-secondary">Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+            <section id="vehicles">
+              <div class="flex xs:flex-col-reverse md:flex-row md:justify-between md:items-end mt-4">
+                {{-- title vehicles --}}
+                <h2 class="text-2xl font-semibold mt-4">{{ $selectedVehicle->name }}</h2>
+
+                {{-- select vehicles --}}
+                <form action="{{route('home')}}" method="get">
+                  <label class="form-control w-full max-w-xs">
+                    <div class="label">
+                      <span class="label-text">Pick the Available Vehicles</span>
+                    </div>
+                    <select class="select select-bordered" name="vehicle_id" onchange="this.form.submit()">
+                      @foreach ($vehicles as $vehicle)
+                        <option value="{{ $vehicle->id }}" {{ $selectedVehicleId == $vehicle->id ? 'selected' : '' }}>
+                          {{ $vehicle->name }}
+                        </option>
+                      @endforeach
+                    </select>
+                  </label>
+                </form>
               </div>
-              <img src="{{asset('images/truck-iveco.jpg')}}" alt="vehicles" class="w-full rounded-lg">
-            </div>
-          </section>
+              <div class="xs:mt-4 md:mt-8 xs:flex xs:flex-col-reverse md:grid md:grid-cols-2 xs:gap-4 md:gap-8">
+                {{-- specs table --}}
+                <div class="w-full">
+                  <div class="overflow-x-auto rounded-lg">
+                      <table class="table border">
+                        <!-- head -->
+                        <thead>
+                          <tr class="bg-primary text-center text-white">
+                            <th colspan="2">{{$selectedVehicle->name}} Specifications</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($selectedVehicle->vehicleSpecifications as $specifications)
+                            <tr>
+                              <td class="bg-secondary max-w-24">{{$specifications->specs}}</td>
+                              <td>{{$specifications->specs_value}}</td>
+                            </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+                <img src="{{asset('images/'.$selectedVehicle->vehicle_photo)}}" alt="vehicles" class="w-full rounded-lg">
+              </div>
+            </section>
+
           <section id="parts" class="mt-8">
             {{-- search --}}
             {{-- <input type="text" placeholder="Search here..." class="input input-bordered w-full max-w-xs" /> --}}
@@ -122,7 +123,7 @@
                 <thead>
                   <tr class="bg-primary text-center text-white">
                     <th></th>
-                    <th>HM (hours meter)</th>
+                    <th>Hours Meter</th>
                     <th>Description</th>
                     <th>Group Description</th>
                     <th>Part No</th>
@@ -135,48 +136,25 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- row 1 -->
-                  <tr class="hover">
-                    <td>1</td>
-                    <td>Cy Ganderton</td>
-                    <td>Quality Control Specialist</td>
-                    <td>Quality Control Specialist</td>
-                    <td>Quality Control Specialist</td>
-                    <td>Quality Control Specialist</td>
-                    <td>Quality Control Specialist</td>
-                    <td>Quality Control Specialist</td>
-                    <td>Quality Control Specialist</td>
-                    <td>Quality Control Specialist</td>
-                    <td>Blue</td>
-                  </tr>
-                  <!-- row 2 -->
-                  <tr class="hover">
-                    <td>2</td>
-                    <td>Hart Hagerty</td>
-                    <td>Desktop Support Technician</td>
-                    <td>Desktop Support Technician</td>
-                    <td>Desktop Support Technician</td>
-                    <td>Desktop Support Technician</td>
-                    <td>Desktop Support Technician</td>
-                    <td>Desktop Support Technician</td>
-                    <td>Desktop Support Technician</td>
-                    <td>Desktop Support Technician</td>
-                    <td>Purple</td>
-                  </tr>
-                  <!-- row 3 -->
-                  <tr class="hover">
-                    <td>3</td>
-                    <td>Brice Swyre</td>
-                    <td>Tax Accountant</td>
-                    <td>Tax Accountant</td>
-                    <td>Tax Accountant</td>
-                    <td>Tax Accountant</td>
-                    <td>Tax Accountant</td>
-                    <td>Tax Accountant</td>
-                    <td>Tax Accountant</td>
-                    <td>Tax Accountant</td>
-                    <td>Red</td>
-                  </tr>
+                  {{-- sort by hours_meter --}}
+                  @php
+                      $sortedParts = $selectedVehicle->parts->sortBy(['hours_meter', 'asc']);
+                  @endphp
+                  @foreach ($sortedParts as $index => $part)
+                      <tr class="hover">
+                          <td class="text-center">{{$index + 1}}</td>
+                          <td class="text-center">HM {{$part->hours_meter}}</td>
+                          <td>{{$part->desc}}</td>
+                          <td>{{$part->group_desc}}</td>
+                          <td>{{$part->part_no}}</td>
+                          <td>{{$part->part_desc}}</td>
+                          <td class="text-center">{{$part->qty}}</td>
+                          <td>{{$part->repl}}%</td>
+                          <td class="text-center">{{$part->unit}}</td>
+                          <td class="text-center">${{$part->price}}</td>
+                          <td class="text-center">${{$part->qty * $part->price}}</td>
+                      </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>

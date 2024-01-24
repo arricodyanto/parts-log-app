@@ -30,8 +30,8 @@ class Part extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function vehicle(): BelongsTo
     {
-        return $this->belongsTo(Vehicle::class, 'id_unit');
+        return $this->belongsTo(Vehicle::class, 'vehicle_id');
     }
 }
