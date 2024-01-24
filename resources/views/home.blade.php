@@ -48,13 +48,13 @@
 
 @section('content')
 
-    <section id="content" class="mt-32">
+    <section id="content" class="xs:mt-32 md:mt-24 lg:mt-32">
         <div class="container">
-          <h1 class="text-center font-semibold text-xl">Vehicles Monitoring</h1>
+          <h1 class="text-center font-semibold text-xl xs:pt-6 md:pt-0">Vehicles Monitoring</h1>
           <section id="vehicles">
-            <div class="flex justify-between items-end">
+            <div class="flex xs:flex-col-reverse md:flex-row md:justify-between md:items-end mt-4">
               {{-- title vehicles --}}
-              <h2 class="text-2xl font-semibold">IVECO TRAKKER AD 410T44 H</h2>
+              <h2 class="text-2xl font-semibold mt-4">IVECO TRAKKER AD 410T44 H</h2>
   
               {{-- select vehicles --}}
               <label class="form-control w-full max-w-xs">
@@ -68,7 +68,118 @@
                 </select>
               </label>
             </div>
-
+            <div class="xs:mt-4 md:mt-8 xs:flex xs:flex-col-reverse md:grid md:grid-cols-2 xs:gap-4 md:gap-8">
+              {{-- specs table --}}
+              <div class="w-full">
+                <div class="overflow-x-auto rounded-lg">
+                  <table class="table border">
+                    <!-- head -->
+                    <thead>
+                      <tr class="bg-primary text-center text-white">
+                        <th colspan="2">{truck-name} Specifications</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- row 1 -->
+                      <tr>
+                        <td class="bg-secondary">Cy Ganderton</td>
+                        <td>Quality Control Specialist</td>
+                      </tr>
+                      <!-- row 2 -->
+                      <tr>
+                        <td class="bg-secondary">Hart Hagerty</td>
+                        <td>Desktop Support Technician</td>
+                      </tr>
+                      <!-- row 3 -->
+                      <tr>
+                        <td class="bg-secondary">Brice Swyre</td>
+                        <td>Tax Accountant</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <img src="{{asset('images/truck-iveco.jpg')}}" alt="vehicles" class="w-full rounded-lg">
+            </div>
+          </section>
+          <section id="parts" class="mt-8">
+            {{-- search --}}
+            {{-- <input type="text" placeholder="Search here..." class="input input-bordered w-full max-w-xs" /> --}}
+            <label class="form-control max-w-36">
+              <div class="label">
+                <span class="label-text">Pick HM</span>
+              </div>
+              <select class="select select-bordered">
+                {{-- <option disabled selected>Pick one</option> --}}
+                <option selected>250</option>
+                <option>500</option>
+                <option>1000</option>
+              </select>
+            </label>
+            <div class="overflow-x-auto xs:mt-3 md:mt-6 rounded-lg border">
+              <table class="table">
+                <!-- head -->
+                <thead>
+                  <tr class="bg-primary text-center text-white">
+                    <th></th>
+                    <th>HM (hours meter)</th>
+                    <th>Description</th>
+                    <th>Group Description</th>
+                    <th>Part No</th>
+                    <th>Part Description</th>
+                    <th>Quantity</th>
+                    <th>% Repl</th>
+                    <th>Unit</th>
+                    <th>Price</th>
+                    <th>Total Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- row 1 -->
+                  <tr class="hover">
+                    <td>1</td>
+                    <td>Cy Ganderton</td>
+                    <td>Quality Control Specialist</td>
+                    <td>Quality Control Specialist</td>
+                    <td>Quality Control Specialist</td>
+                    <td>Quality Control Specialist</td>
+                    <td>Quality Control Specialist</td>
+                    <td>Quality Control Specialist</td>
+                    <td>Quality Control Specialist</td>
+                    <td>Quality Control Specialist</td>
+                    <td>Blue</td>
+                  </tr>
+                  <!-- row 2 -->
+                  <tr class="hover">
+                    <td>2</td>
+                    <td>Hart Hagerty</td>
+                    <td>Desktop Support Technician</td>
+                    <td>Desktop Support Technician</td>
+                    <td>Desktop Support Technician</td>
+                    <td>Desktop Support Technician</td>
+                    <td>Desktop Support Technician</td>
+                    <td>Desktop Support Technician</td>
+                    <td>Desktop Support Technician</td>
+                    <td>Desktop Support Technician</td>
+                    <td>Purple</td>
+                  </tr>
+                  <!-- row 3 -->
+                  <tr class="hover">
+                    <td>3</td>
+                    <td>Brice Swyre</td>
+                    <td>Tax Accountant</td>
+                    <td>Tax Accountant</td>
+                    <td>Tax Accountant</td>
+                    <td>Tax Accountant</td>
+                    <td>Tax Accountant</td>
+                    <td>Tax Accountant</td>
+                    <td>Tax Accountant</td>
+                    <td>Tax Accountant</td>
+                    <td>Red</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
         </div>
     </section>

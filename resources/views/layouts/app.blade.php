@@ -37,6 +37,8 @@
 
             @yield('hero')
             @yield('content')
+
+            @include('components.footer')
         {{-- </div> --}}
 
         {{-- js --}}
