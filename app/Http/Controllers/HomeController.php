@@ -31,24 +31,22 @@ class HomeController extends Controller
 
         // parts chart
         $pieChart = (new LarapexChart)->pieChart()
-            ->setTitle('Parts Price (Pie)')
+            ->setTitle('Parts Price ($)')
             ->setSubtitle('HM '.$selectedHM)
             ->setDataset($sortedParts->pluck('price')->toArray())
             ->setLabels($sortedParts->pluck('part_desc')->toArray());
         
         $barChart = (new LarapexChart)->barChart()
-            ->setTitle('Parts Price (Pie)')
+            ->setTitle('Parts Total Price ($)')
             ->setSubtitle('HM '.$selectedHM)
             ->setHeight(350)
-            ->setXAxis($sortedParts->pluck('part_desc')->toArray())
+            ->setXAxis($sortedParts->pluck('group_desc')->toArray())
             ->setDataset([
                 [
-                    'name'  =>  'Quantity',
-                    'data'  =>  $sortedParts->pluck('qty')->map(fn ($value) => (int)$value)->toArray()
-                ],
-                [
-                    'name'  =>  'Price ($)',
-                    'data'  =>  $sortedParts->pluck('price')->toArray()
+                    'name' => '($) Total Price',
+                    'data' => $sortedParts->map(function ($item) {
+                        return $item->qty * $item->price;
+                    })->toArray(),
                 ],
             ]);
         
