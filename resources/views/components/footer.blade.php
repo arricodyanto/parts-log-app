@@ -8,12 +8,24 @@
                 <p class="text-sm text-grey">Vehicles Monitoring System</p>
             </div>
             <div class="grid xs:grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-                <div class="">
-                    <p class="text-sm">You are an admin?</p>
-                    <a href="{{route('login')}}">
-                        <button class="btn btn-primary text-white w-44 mt-2 mb-8">Login</button>
-                    </a>
-                </div>
+                @auth
+                    <div>
+                        <p class="text-sm mb-4">Welcome, </p>
+                        <div class="btn btn-ghost btn-circle avatar">
+                            <div class="w-10 rounded-full">
+                                <img alt="Avatar" src="{{asset('images/'.Auth::user()->avatar)}}" />
+                            </div>
+                        </div>
+                        <p class="text-lg">{{Auth::user()->name}}</p>
+                    </div>
+                @else
+                    <div class="">
+                        <p class="text-sm">You are an admin?</p>
+                        <a href="{{route('login')}}">
+                            <button class="btn btn-primary text-white w-44 mt-2 mb-8">Login</button>
+                        </a>
+                    </div>
+                @endauth
                 <div>
                     <h3 class="text-lg font-semibold">Navigation</h3>
                     <ul class="flex flex-col gap-2 mt-4">
