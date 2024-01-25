@@ -1,15 +1,6 @@
 @php
     // vehicle select
     $selectedVehicleId = request('id', $selectedVehicle->id);
-
-    // hours meter select
-    $selectedHM = request('picked_hm', 250); // default value 250 if not provided
-    $sortedParts = $selectedVehicle->parts
-        ->sortBy(['hours_meter', 'asc'])
-        ->filter(function ($part) use ($selectedHM) {
-            return $part->hours_meter <= $selectedHM;
-        })
-        ->values();
 @endphp
 
 @extends('layouts.app')
@@ -177,7 +168,22 @@
               </table>
             </div>
           </section>
+          <section id="charts" class="mt-8">
+            <div class="md:grid md:grid-cols-7 gap-4 mb-4">
+              <div class="rounded-lg mx-auto p-6 mb-2 w-full border col-span-3">
+                  {!! $pieChart->container() !!}
+              </div>
+              <div class="rounded-lg mx-auto p-6 mb-2 w-full border col-span-4">
+                  {!! $barChart->container() !!}
+              </div>
+          </div>
+          </section>
         </div>
     </section>
 
+    <script src="{{ $pieChart->cdn() }}"></script>
+    <script src="{{ $barChart->cdn() }}"></script>
+
+    {{ $pieChart->script() }}
+    {{ $barChart->script() }}
 @endsection
