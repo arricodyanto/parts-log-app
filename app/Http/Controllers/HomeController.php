@@ -4,16 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Part;
 use App\Models\Vehicle;
-use App\Models\VehicleSpecification;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
         $vehicles = Vehicle::all();
-        $selectedVehicle = Vehicle::findOrFail(request('vehicle_id', $vehicles->last()->id));
+        $selectedVehicle = Vehicle::findOrFail(request('vehicle_id', $vehicles->first()->id));
 
         $hours_meter = Part::all()->pluck('hours_meter')->unique()->sort();
 
