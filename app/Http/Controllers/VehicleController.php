@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vehicle;
+use App\Models\VehicleSpecification;
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
@@ -12,5 +13,10 @@ class VehicleController extends Controller
         // $vehicleId = Vehicle::find();
 
         return view('vehicles.view', compact('vehicles'));
+    }
+
+    public function edit(Vehicle $vehicle) {
+        $specifications = VehicleSpecification::where('vehicle_id', $vehicle->id)->get();
+        return view('vehicles.edit', compact('vehicle', 'specifications'));
     }
 }

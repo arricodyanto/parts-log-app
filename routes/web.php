@@ -21,7 +21,11 @@ use Illuminate\Support\Facades\Route;
 // })->name('home');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/vehicles', [VehicleController::class, 'index'])->middleware(['auth', 'verified'])->name('vehicles.view');
+Route::prefix('vehicles')->middleware(['auth', 'verified'])->group(function() {
+    Route::get('/', [VehicleController::class, 'index'])->name('vehicles.view');
+    Route::get('/edit/{vehicle:id}', [VehicleController::class, 'edit'])->name('vehicles.edit');
+});
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

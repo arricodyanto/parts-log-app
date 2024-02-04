@@ -43,7 +43,20 @@
                               <td>
                                 specs
                               </td>
-                              <td>action</td>
+                              <td class="">
+                                <div class="flex gap-2 justify-center">
+                                    <a href="{{route('vehicles.edit', $vehicle->id)}}">
+                                        <button class="btn btn-sm btn-warning text-white">
+                                            <img src="/images/pencil.svg" alt="Edit Button" class="w-3">
+                                            Edit  
+                                        </button>
+                                    </a>
+                                    <button class="btn btn-sm btn-error text-white">
+                                        <img src="/images/trash.svg" alt="Edit Button" class="w-3">
+                                        Delete
+                                    </button>
+                                </div>
+                              </td>
                           </tr>
                         @endforeach
                       @else
