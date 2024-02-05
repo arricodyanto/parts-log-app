@@ -57,5 +57,12 @@ class VehicleController extends Controller
         }
     
         return redirect()->route('vehicles.edit', $vehicle->id)->with('success', 'Data updated successfully');
-    }    
+    }
+
+    public function delete(Vehicle $vehicle) {
+        $vehicle->vehicleSpecifications()->delete();
+        $vehicle->delete();
+
+        return redirect()->route('vehicles.view');
+    }
 }
