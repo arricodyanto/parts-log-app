@@ -23,7 +23,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('vehicles')->middleware(['auth', 'verified'])->group(function() {
     Route::get('/', [VehicleController::class, 'index'])->name('vehicles.view');
-    Route::get('/edit/{vehicle:id}', [VehicleController::class, 'edit'])->name('vehicles.edit');
+    Route::get('/{vehicle:id}/edit', [VehicleController::class, 'edit'])->name('vehicles.edit');
+    Route::put('/{vehicle:id}/update', [VehicleController::class, 'update'])->name('vehicles.update');
 });
 
 
