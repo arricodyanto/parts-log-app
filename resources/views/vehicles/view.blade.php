@@ -19,7 +19,9 @@
         </section>
         <section id="vehicles-data">
           <div class="flex xs:justify-start md:justify-end">
-            <button class="btn btn-primary text-white mt-6 px-6">Tambah Data</button>
+            <a href="{{ route('vehicles.add') }}">
+              <button class="btn btn-primary text-white mt-6 px-6">Tambah Data</button>
+            </a>
           </div>
           <div class="overflow-x-auto xs:mt-3 md:mt-4 rounded-lg border">
               <table class="table">
@@ -41,7 +43,7 @@
                             <td class="text-center">{{$index + 1}}</td>
                             <td class="text-center">{{$vehicle->name}}</td>
                             <td class="flex justify-center">
-                                <img src="{{asset('/images/'.$vehicle->vehicle_photo)}}" alt="{{$vehicle->name}}'s Image" class="max-w-64 aspect-[5/3] object-cover rounded-lg">
+                              <img src="{{ asset('/images/' . ($vehicle->vehicle_photo ?? 'default-image.jpg')) }}" alt="{{ $vehicle->name }}'s Image" class="max-w-64 aspect-[5/3] object-cover rounded-lg">
                             </td>
                             <td>
                               @foreach ($vehicle->vehicleSpecifications as $index => $item)

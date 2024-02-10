@@ -11,10 +11,46 @@ class VehicleController extends Controller
 {
     public function index() {
         $vehicles = Vehicle::with('vehicleSpecifications')->paginate(15);
-        // dd($vehicles);
-        // $vehicleId = Vehicle::find();
 
         return view('vehicles.view', compact('vehicles'));
+    }
+
+    public function add() {
+        return view('vehicles.add');
+    }
+
+    public function store(Request $request)
+    {
+        // Validasi data yang diterima dari form
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'vehicle_photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Menambahkan validasi untuk foto kendaraan
+            'specifications' => 'required|array|min:1',
+            'specifications.*.specs' => 'required|string|max:255',
+            'specifications.*.specs_value' => 'required|string|max:255',
+        ]);
+
+        // Simpan file image ke server
+        $imageFile = $request->file('vehicle_photo');
+        $imageFile->move('images', $imageFile->getClientOriginalName());
+
+        // Simpan data kendaraan
+        $vehicle = Vehicle::create([
+            'name' => $request->name,
+            'vehicle_photo' => $imageFile->getClientOriginalName(), // Simpan path foto kendaraan ke dalam database
+        ]);
+
+        // Simpan spesifikasi kendaraan
+        foreach ($request->specifications as $specification) {
+            VehicleSpecification::create([
+                'vehicle_id' => $vehicle->id,
+                'specs' => $specification['specs'],
+                'specs_value' => $specification['specs_value'],
+            ]);
+        }
+
+        // Redirect ke halaman yang sesuai atau tampilkan pesan sukses
+        return redirect()->route('vehicles.view')->with('success', 'New vehicle has been added successfully.');
     }
 
     public function edit(Vehicle $vehicle) {

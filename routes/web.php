@@ -23,6 +23,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('vehicles')->middleware(['auth', 'verified'])->group(function() {
     Route::get('/', [VehicleController::class, 'index'])->name('vehicles.view');
+    Route::get('/add', [VehicleController::class, 'add'])->name('vehicles.add');
+    Route::post('/store', [VehicleController::class, 'store'])->name('vehicles.store');
     Route::get('/{vehicle:id}/edit', [VehicleController::class, 'edit'])->name('vehicles.edit');
     Route::put('/{vehicle:id}/update', [VehicleController::class, 'update'])->name('vehicles.update');
     Route::delete('/{vehicle:id}/delete', [VehicleController::class, 'delete'])->name('vehicles.delete');
