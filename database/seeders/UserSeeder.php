@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
                 'name' => 'Super Admin',
                 'email' => 'super@admin.com',
                 'password' => \bcrypt('password'),
-                'avatar' => null,
+                'avatar' => 'superadmin.jpg',
                 'role' => 'super admin',
                 'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'created_at' => date('Y-m-d H:i:s', time()),
