@@ -6,6 +6,8 @@ use App\Models\Vehicle;
 use App\Models\VehicleSpecification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class VehicleController extends Controller
 {
@@ -70,6 +72,20 @@ class VehicleController extends Controller
     
         // vehicle update handller
         $vehicle->name = $request->name;
+        
+        // update vehicle photo
+        if ($request->vehicle_photo != null) {
+            $imagePath = public_path('images/' . $vehicle->vehicle_photo);
+            if (File::exists($imagePath)) {
+                File::delete($imagePath);
+            }
+            
+            // save new vehicle_photo
+            $imageFile = $request->file('vehicle_photo');
+            $vehicle->vehicle_photo = $imageFile->getClientOriginalName();
+            $imageFile->move('images', $imageFile->getClientOriginalName());
+        }
+
         $vehicle->save();
     
         // specs delete handler
@@ -96,6 +112,11 @@ class VehicleController extends Controller
     }
 
     public function delete(Vehicle $vehicle) {
+        // Delete the vehicle_photo if the exists
+        $imagePath = public_path('images/' . $vehicle->vehicle_photo);
+        if (File::exists($imagePath)) {
+            File::delete($imagePath);
+        }
         $vehicle->vehicleSpecifications()->delete();
         $vehicle->delete();
 

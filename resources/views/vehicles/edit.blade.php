@@ -19,7 +19,7 @@
         </section>
         <section id="form" class="max-w-[900px] mx-auto">
             <h2 class="text-lg font-semibold mt-4">Vehicle Identifications</h2>
-            <form id="specifications-form" method="POST" action="{{ route('vehicles.update', ['vehicle' => $vehicle->id]) }}">
+            <form id="specifications-form" method="POST" action="{{ route('vehicles.update', ['vehicle' => $vehicle->id]) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
