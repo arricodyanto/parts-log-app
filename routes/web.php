@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,24 +20,18 @@ use Illuminate\Support\Facades\Route;
 // })->name('home');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::prefix('vehicles')->middleware(['auth', 'verified'])->group(function() {
-    Route::get('/', [VehicleController::class, 'index'])->name('vehicles.view');
-    Route::get('/add', [VehicleController::class, 'add'])->name('vehicles.add');
-    Route::post('/store', [VehicleController::class, 'store'])->name('vehicles.store');
-    Route::get('/{vehicle:id}/edit', [VehicleController::class, 'edit'])->name('vehicles.edit');
-    Route::put('/{vehicle:id}/update', [VehicleController::class, 'update'])->name('vehicles.update');
-    Route::delete('/{vehicle:id}/delete', [VehicleController::class, 'delete'])->name('vehicles.delete');
+Route::get('/vehicles', function () {
+    return view('vehicles/view');
+})->middleware(['auth', 'verified'])->name('vehicles.view');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware(['auth', 'verified'])->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
 
 require __DIR__.'/auth.php';
