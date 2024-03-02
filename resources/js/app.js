@@ -23,13 +23,3 @@ window.onscroll = () => {
         navbar.classList.remove("bg-white", "backdrop-blur-md");
     }
 };
-
-// image preview
-let img = document.getElementById("image-preview");
-let input = document.getElementById("input-image-preview");
-
-input.onchange = (e) => {
-    if (input.files[0]) {
-        img.src = URL.createObjectURL(input.files[0]);
-    }
-};
