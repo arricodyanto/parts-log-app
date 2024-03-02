@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index()
     {
         $vehicles = Vehicle::all();
-        $selectedVehicle = Vehicle::findOrFail(request('vehicle_id', $vehicles->first()->id));
+        $selectedVehicle = Vehicle::findOrFail(request('vehicle_id', $vehicles->last()->id));
 
         $hours_meter = Part::all()->pluck('hours_meter')->unique()->sort();
 
