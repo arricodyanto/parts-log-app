@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 class UserController extends Controller
 {
     public function index()
     {
-        return view('users.view');
+        $users = User::paginate(15);
+        return view('users.view', compact('users'));
     }
 
     public function add()
