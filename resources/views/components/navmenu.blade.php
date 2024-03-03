@@ -4,7 +4,7 @@
         @auth
             <li class="nav-menu"><a href="{{route('vehicles.view')}}">Vehicles Management</a></li>
             <li class="nav-menu"><a href="#">Parts Management</a></li>
-            <li class="nav-menu"><a href="#">Accounts Management</a></li>
+            <li class="nav-menu"><a href="{{route('users.view')}}">Accounts Management</a></li>
         @else
             <li class="nav-menu"><a href="{{route('login')}}">Login</a></li>
         @endauth
@@ -58,8 +58,8 @@
             <li class="nav-menu"><a href="{{route('home')}}">Home</a></li>
             @auth
                 <li class="nav-menu"><a href="{{route('vehicles.view')}}">Vehicles Management</a></li>
-                <li class="nav-menu"><a href="#">Parts Management</a></li>
-                <li class="nav-menu"><a href="#">Accounts Management</a></li>
+                <li class="nav-menu"><a href="">Parts Management</a></li>
+                <li class="nav-menu"><a href="{{route('users.view')}}">Accounts Management</a></li>
                 <li class="nav-menu"><a href="#">Profile</a></li>
                 <li class="nav-menu h-24">
                     <form method="POST" action="{{ route('logout') }}">
