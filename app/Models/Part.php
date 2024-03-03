@@ -27,8 +27,6 @@ class Part extends Model
 
     /**
      * Get the user that owns the Part
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function vehicle(): BelongsTo
     {

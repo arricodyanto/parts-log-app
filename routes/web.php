@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 // })->name('home');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::prefix('vehicles')->middleware(['auth', 'verified'])->group(function() {
+Route::prefix('vehicles')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [VehicleController::class, 'index'])->name('vehicles.view');
     Route::get('/add', [VehicleController::class, 'add'])->name('vehicles.add');
     Route::post('/store', [VehicleController::class, 'store'])->name('vehicles.store');
@@ -32,11 +32,11 @@ Route::prefix('vehicles')->middleware(['auth', 'verified'])->group(function() {
 
 });
 
-Route::prefix('users')->middleware(['auth', 'verified'])->group(function() {
+Route::prefix('users')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('users.view');
     Route::get('/add', [UserController::class, 'add'])->name('users.add');
+    Route::get('/store', [UserController::class, 'store'])->name('users.edit');
 });
-
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

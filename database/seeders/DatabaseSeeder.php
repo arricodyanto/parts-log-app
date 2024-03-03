@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             VehicleSeeder::class,
             VehicleSpecificationSeeder::class,
-            PartSeeder::class
+            PartSeeder::class,
         ]);
     }
 }

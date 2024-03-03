@@ -18,14 +18,14 @@ class VehicleSeeder extends Seeder
                 'name' => 'IVECO TRAKKER AD 410T44 H',
                 'vehicle_photo' => 'truck-iveco.jpg',
                 'created_at' => date('Y-m-d H:i:s', time()),
-                'updated_at' => date('Y-m-d H:i:s', time())
+                'updated_at' => date('Y-m-d H:i:s', time()),
             ],
             [
                 'id' => '7f008cb5-52e2-4283-9d78-cc14ea582749',
                 'name' => 'IVECO TRAKKER AD 410T77 A',
                 'vehicle_photo' => 'truck-iveco-2.jpg',
                 'created_at' => date('Y-m-d H:i:s', strtotime('+1 second')),
-                'updated_at' => date('Y-m-d H:i:s', strtotime('+1 second'))
+                'updated_at' => date('Y-m-d H:i:s', strtotime('+1 second')),
             ],
         ];
 

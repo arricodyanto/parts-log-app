@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'role' => 'super admin',
                 'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'created_at' => date('Y-m-d H:i:s', time()),
-                'updated_at' => date('Y-m-d H:i:s', time())
+                'updated_at' => date('Y-m-d H:i:s', time()),
             ],
             [
                 'id' => Str::uuid(),
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
                 'role' => 'admin',
                 'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'created_at' => date('Y-m-d H:i:s', time()),
-                'updated_at' => date('Y-m-d H:i:s', time())
+                'updated_at' => date('Y-m-d H:i:s', time()),
             ],
         ];
 
