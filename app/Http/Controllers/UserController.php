@@ -62,4 +62,15 @@ class UserController extends Controller
 
         return redirect()->route('users.edit', $user->id)->with('success', 'Data updated successfully');
     }
+
+    public function delete(User $user) {
+        // delete avatar
+        $imagePath = public_path('images/avatar'.$user->avatar);
+        if (File::exists($imagePath)) {
+            File::delete($imagePath);
+        }
+        $user->delete();
+
+        return redirect()->route('users.view');
+    }
 }
