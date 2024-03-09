@@ -6,7 +6,6 @@
 @extends('layouts.app')
 
 @section('hero')
-
     <section id="hero" class="xs:h-[18rem] md:h-[27rem] lg:h-[36rem] bg-secondary xs:rounded-b-[3rem] lg:rounded-b-[6rem]">
         <div class="container text-center pt-24">
             {{--  carousel --}}
@@ -15,17 +14,17 @@
                   <a href="#">
                     <img src="{{asset('images/hero-1.jpg')}}" class="w-full" />
                   </a>
-                </div> 
+                </div>
                 <div id="item2" class="carousel-item w-full">
                   <img src="{{asset('images/hero-2.jpg')}}" class="w-full" />
-                </div> 
+                </div>
                 <div id="item3" class="carousel-item w-full">
                   <img src="{{asset('images/hero-3.jpg')}}" class="w-full" />
-                </div> 
+                </div>
                 <div id="item4" class="carousel-item w-full">
                   <img src="{{asset('images/hero-4.jpg')}}" class="w-full" />
                 </div>
-            </div> 
+            </div>
             <div class="xs:hidden lg:flex justify-end w-full py-2 gap-2">
               <a href="#item1" class="btn btn-xs btn-primary btn-circle"></a>
               <a href="#item2" class="btn btn-xs btn-primary btn-circle"></a>
@@ -48,7 +47,7 @@
             </div>
         </div>
     </section>
-    
+
 @endsection
 
 @section('content')
@@ -143,7 +142,7 @@
                 </thead>
                 <tbody>
                   {{-- sort by hours_meter --}}
-                  @if (count($sortedParts) > 0) 
+                  @if (count($sortedParts) > 0)
                     @foreach ($sortedParts as $index => $part)
                       <tr class="hover">
                           <td class="text-center">{{$index + 1}}</td>

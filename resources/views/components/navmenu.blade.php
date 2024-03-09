@@ -80,7 +80,7 @@
                         @else
                             <div class="btn btn-ghost btn-circle avatar translate-x-[1.1rem]">
                                 <div class="w-10 rounded-full">
-                                    <img alt="Avatar" src="{{asset('images/'.Auth::user()->avatar)}}" />
+                                    <img alt="Avatar" src="{{asset('images/avatar/'.Auth::user()->avatar)}}" />
                                 </div>
                             </div>
                         @endif

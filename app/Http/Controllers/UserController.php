@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -16,12 +18,56 @@ class UserController extends Controller
 
     public function add()
     {
-        return view('users.add');
+        $roles = ["super admin", "admin"];
+        return view('users.add', compact('roles'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        return null;
+        /**
+         * $request->validate([
+         * 'name' => ['required', 'string', 'max:255'],
+         * 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+         * 'password' => ['required', 'confirmed', Rules\Password::defaults()],
+         * ]);
+         *
+         * $user = User::create([
+         * 'name' => $request->name,
+         * 'email' => $request->email,
+         * 'password' => Hash::make($request->password),
+         * ]);
+         *
+         * event(new Registered($user));
+         *
+         * Auth::login($user);
+         *
+         * return redirect(RouteServiceProvider::HOME);
+         */
+        // validate
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255|email|lowercase|unique:'.User::class,
+            'password' => ['required', 'min:8', 'max:24', Password::defaults()]
+        ]);
+
+        // Simpan file image ke server
+        $imageFile = $request->file('avatar');
+        if ($request->avatar != null) {
+            $fileName = $imageFile->getClientOriginalName();
+            $imageFile->move('images/avatar', $fileName);
+        } else {
+            $fileName = null;
+        }
+
+        User::create([
+           'name' => $request->name,
+           'email' => $request->email,
+           'avatar' => $fileName,
+           'password' => Hash::make($request->password),
+           'role' => $request->role
+        ]);
+
+        return redirect()->route('users.view');
     }
 
     public function edit(User $user) {

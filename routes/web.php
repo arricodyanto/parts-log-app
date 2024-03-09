@@ -35,7 +35,7 @@ Route::prefix('vehicles')->middleware(['auth', 'verified'])->group(function () {
 Route::prefix('users')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('users.view');
     Route::get('/add', [UserController::class, 'add'])->name('users.add');
-    Route::get('/store', [UserController::class, 'store'])->name('users.store');
+    Route::post('/store', [UserController::class, 'store'])->name('users.store');
     Route::get('/{user:id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/{user:id}/update', [UserController::class, 'update'])->name('users.update');
     Route::delete('/{user:id}/delete', [UserController::class, 'delete'])->name('users.delete');
