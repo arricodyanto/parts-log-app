@@ -47,7 +47,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|max:255|email|lowercase|unique:'.User::class,
-            'password' => ['required', 'min:8', 'max:24', Password::defaults()]
+            'password' => ['required', 'min:8', 'max:24', Password::defaults()],
         ]);
 
         // Simpan file image ke server
@@ -64,7 +64,7 @@ class UserController extends Controller
            'email' => $request->email,
            'avatar' => $fileName,
            'password' => Hash::make($request->password),
-           'role' => $request->role
+           'role' => $request->role ?? 'admin'
         ]);
 
         return redirect()->route('users.view');
