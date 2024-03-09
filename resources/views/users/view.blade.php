@@ -43,15 +43,15 @@
                         <tr class="hover">
                             <td class="text-center">{{$index + 1}}</td>
                             <td class="flex justify-center">
-                                <img src="{{asset('/images/' . ($user->avatar ?? 'default-image.jpg'))}}" alt="avatar-user" class="w-12 h-12 rounded-full aspect-square" />
+                                <img src="{{asset('/images/avatar/' . ($user->avatar ?? 'default-image.jpg'))}}" alt="avatar-user" class="w-12 h-12 rounded-full aspect-square object-cover" />
                             </td>
                             <td class="text-center">{{$user->name}}</td>
                             <td class="text-center">{{$user->email}}</td>
                             <td class="text-center capitalize">{{$user->role}}</td>
                             <td class="">
                               <div class="flex xs:flex-col md:flex-row gap-2 justify-center">
-{{--                                  <a href="{{route('vehicles.edit', ['vehicle' => $vehicle->id])}}">--}}
-                                  <a href="">
+{{--                                  <a href="{{route('users.edit', ['user' => $user->id])}}">--}}
+                                  <a href="{{route('users.edit', ['user' => $user->id])}}">
                                       <button class="btn btn-sm btn-warning text-white w-full">
                                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
@@ -79,14 +79,15 @@
               </table>
             </div>
             <div class="mt-4">
-                {{-- {{ $vehicles->links('components.pagination') }} --}}
+                 {{ $users->links('components.pagination') }}
             </div>
             <dialog id="delete_dialog" class="modal">
               <div class="modal-box">
                   <h3 class="font-bold text-lg">Confirmation Dialog</h3>
                   <p class="py-4">Are you sure want to delete this data?</p>
                   <div class="modal-action">
-                    <form action="{{ route('vehicles.delete', ['vehicle' => 'vehicleId']) }}" method="post" id="delete-form">
+{{--                    <form action="{{ route('vehicles.delete', ['vehicle' => 'vehicleId']) }}" method="post" id="delete-form">--}}
+                    <form action="" method="post" id="delete-form">
                       @csrf
                       @method('delete')
                       <input type="hidden" name="vehicleId" id="delete-vehicle-id" value="">

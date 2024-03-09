@@ -16,11 +16,11 @@
                     <div class="bg-neutral text-neutral-content rounded-full w-12">
                         <span class="uppercase text-lg">{{Str::charAt(Auth::user()->name, 0)}}</span>
                     </div>
-                </div> 
+                </div>
             @else
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
-                        <img alt="Avatar" src="{{asset('images/'.Auth::user()->avatar)}}" />
+                        <img alt="Avatar" src="{{asset('images/avatar/'.Auth::user()->avatar)}}" />
                     </div>
                 </div>
             @endif
@@ -51,7 +51,7 @@
           <label for="my-drawer" class="btn btn-primary drawer-button btn-circle btn-ghost lg:hidden text-dark">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </label>
-        </div> 
+        </div>
         <div class="drawer-side">
           <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
           <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
@@ -76,7 +76,7 @@
                                 <div class="bg-neutral text-neutral-content rounded-full w-12">
                                     <span class="uppercase text-lg">{{Str::charAt(Auth::user()->name, 0)}}</span>
                                 </div>
-                            </div> 
+                            </div>
                         @else
                             <div class="btn btn-ghost btn-circle avatar translate-x-[1.1rem]">
                                 <div class="w-10 rounded-full">
@@ -91,7 +91,7 @@
             @else
                 <li class="nav-menu"><a href="{{route('login')}}">Login</a></li>
             @endauth
-            
+
           </ul>
         </div>
       </div>
