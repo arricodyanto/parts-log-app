@@ -31,40 +31,22 @@
                         <th></th>
                         <th>Image</th>
                         <th>Vehicle Name</th>
-                        <th>Hours Meter</th>
-                        <th>Description</th>
-                        <th>Group Description</th>
-                        <th>Part No</th>
-                        <th>Part Description</th>
-                        <th>Quantity</th>
-                        <th>% Repl</th>
-                        <th>Unit</th>
-                        <th>Price</th>
-                        <th>Total Price</th>
+                        <th>Parts Log Count</th>
                         <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {{-- sort by hours_meter --}}
-                    @if(count($parts) > 0)
-                        @foreach($parts as $index => $part)
+                    @if(count($vehicles) > 0)
+                        @foreach($vehicles as $index => $vehicle)
                             <tr class="hover">
-                                <td class="text-center">{{ $parts->firstItem() + $index }}</td>
+                                <td class="text-center">{{ $vehicles->firstItem() + $index }}</td>
                                 <td class="flex justify-center">
-                                  <img src="{{ asset('/images/' . ($part->vehicle->vehicle_photo ?? 'default-image.jpg')) }}" alt="{{ $part->vehicle->name }}'s Image" class="max-w-64 aspect-[5/3] object-cover rounded-lg">
+                                  <img src="{{ asset('/images/' . ($vehicle->vehicle_photo ?? 'default-image.jpg')) }}" alt="{{ $vehicle->name }}'s Image" class="max-w-64 aspect-[5/3] object-cover rounded-lg">
                                 </td>
-                                <td class="text-center">{{ $part->vehicle->name }}</td>
-                                <td class="text-center">HM {{ $part->hours_meter }}</td>
-                                <td>{{$part->desc}}</td>
-                                <td>{{$part->group_desc}}</td>
-                                <td>{{$part->part_no}}</td>
-                                <td>{{$part->part_desc}}</td>
-                                <td class="text-center">{{$part->qty}}</td>
-                                <td>{{$part->repl}}%</td>
-                                <td class="text-center">{{$part->unit}}</td>
-                                <td class="text-center">${{$part->price}}</td>
-                                <td class="text-center">${{$part->qty * $part->price}}</td>
-                                <td>
+                                <td class="text-center">{{ $vehicle->name }}</td>
+                                <td class="text-center italic">{{ count($vehicle->parts) }} parts log registered.</td>
+                                <td class="text-center">
                                     <button class="btn btn-sm btn-info text-white w-max" onclick="">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
@@ -119,7 +101,7 @@
               </table>
             </div>
             <div class="mt-4">
-                {{ $parts->links('components.pagination') }}
+                {{ $vehicles->links('components.pagination') }}
             </div>
             <dialog id="delete_dialog" class="modal">
               <div class="modal-box">
