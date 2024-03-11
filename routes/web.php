@@ -45,7 +45,7 @@ Route::prefix('parts')->middleware(['auth', 'verified'])->group(function () {
    Route::get('/', [PartController::class, 'index'])->name('parts.view');
    Route::get('/add', [PartController::class, 'index'])->name('parts.add');
    Route::post('/store', [PartController::class, 'index'])->name('parts.store');
-//   Route::put('/', [PartController::class, 'index'])->name('parts.view');
+   Route::get('/{vehicle:edit}', [PartController::class, 'index'])->name('parts.edit');
 });
 
 // Route::get('/dashboard', function () {
