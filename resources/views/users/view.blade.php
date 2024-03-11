@@ -41,7 +41,7 @@
                     @if (count($users) > 0)
                       @foreach ($users as $index => $user)
                         <tr class="hover">
-                            <td class="text-center">{{$index + 1}}</td>
+                            <td class="text-center">{{ $users->firstItem() + $index }}</td>
                             <td class="flex justify-center">
                                 <img src="{{asset('/images/avatar/' . ($user->avatar ?? 'default-image.jpg'))}}" alt="avatar-user" class="w-12 h-12 rounded-full aspect-square object-cover" />
                             </td>

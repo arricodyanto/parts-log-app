@@ -40,7 +40,7 @@
                     @if (count($vehicles) > 0)
                       @foreach ($vehicles as $index => $vehicle)
                         <tr class="hover">
-                            <td class="text-center">{{$index + 1}}</td>
+                            <td class="text-center">{{ $vehicles->firstItem() + $index }}</td>
                             <td class="flex justify-center">
                               <img src="{{ asset('/images/' . ($vehicle->vehicle_photo ?? 'default-image.jpg')) }}" alt="{{ $vehicle->name }}'s Image" class="max-w-64 aspect-[5/3] object-cover rounded-lg">
                             </td>
