@@ -5,20 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
     public function index()
     {
         $users = User::paginate(15);
+
         return view('users.view', compact('users'));
     }
 
     public function add()
     {
-        $roles = ["super admin", "admin"];
+        $roles = ['super admin', 'admin'];
+
         return view('users.add', compact('roles'));
     }
 
@@ -60,28 +62,30 @@ class UserController extends Controller
         }
 
         User::create([
-           'name' => $request->name,
-           'email' => $request->email,
-           'avatar' => $fileName,
-           'password' => Hash::make($request->password),
-           'role' => $request->role ?? 'admin'
+            'name' => $request->name,
+            'email' => $request->email,
+            'avatar' => $fileName,
+            'password' => Hash::make($request->password),
+            'role' => $request->role ?? 'admin',
         ]);
 
         return redirect()->route('users.view');
     }
 
-    public function edit(User $user) {
+    public function edit(User $user)
+    {
         $user = User::find($user->id);
-        $roles = ["super admin", "admin"];
+        $roles = ['super admin', 'admin'];
 
         return view('users.edit', compact('user', 'roles'));
     }
 
-    public function update(Request $request, User $user) {
+    public function update(Request $request, User $user)
+    {
         $request->validate([
-           'name' => 'required|string',
-           'email' => 'required|string',
-           'role' => 'required|string'
+            'name' => 'required|string',
+            'email' => 'required|string',
+            'role' => 'required|string',
         ]);
 
         // avatar update handler
@@ -109,7 +113,8 @@ class UserController extends Controller
         return redirect()->route('users.edit', $user->id)->with('success', 'Data updated successfully');
     }
 
-    public function delete(User $user) {
+    public function delete(User $user)
+    {
         // delete avatar
         $imagePath = public_path('images/avatar'.$user->avatar);
         if (File::exists($imagePath)) {
