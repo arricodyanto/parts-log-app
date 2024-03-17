@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Part;
 use App\Models\Vehicle;
+use Illuminate\Http\Request;
 
 class PartController extends Controller
 {
