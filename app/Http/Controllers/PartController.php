@@ -14,4 +14,17 @@ class PartController extends Controller
 
         return view('parts.view', compact('vehicles'));
     }
+
+    public function add()
+    {
+        $vehicles = Vehicle::all(['id', 'name']);
+        return view('parts.add', compact('vehicles'));
+    }
+
+    public function store(Request $req)
+    {
+        return null;
+    }
 }
+
+?>
