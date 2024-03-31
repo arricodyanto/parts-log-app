@@ -15,12 +15,12 @@ class Part extends Model
     protected $fillable = [
         'vehicle_id',
         'hours_meter',
-        'decs',
+        'desc',
         'group_desc',
         'part_no',
         'part_desc',
         'qty',
-        'rpl',
+        'repl',
         'unit',
         'price',
     ];
