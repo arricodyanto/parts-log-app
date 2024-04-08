@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Part;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Collection;
 
 class PartController extends Controller
 {
@@ -46,6 +48,51 @@ class PartController extends Controller
                 'price' => $part['price'],
             ]);
         }
+        return redirect()->route('parts.view')->with('success', 'Parts has been added successfully');
+    }
+
+    public function storeExcel(Request $req) {
+        // validasi form
+        $req->validate([
+            'vehicle_id' => 'required',
+            'parts_log' => 'required|file|mimes:xls,xlsx'
+        ]);
+
+        $file = $req->file('parts_log');
+
+        // read file
+        $data = Excel::toCollection(new Collection(), $file)->first();
+
+        $dataArray = [];
+        foreach ($data as $row) {
+            $dataArray[] = $row->toArray();
+        }
+
+        // delete header
+        array_shift($dataArray);
+
+        // format ulang menjadi array yang sesuai
+        $parts = [];
+        foreach ($dataArray as $part) {
+            $parts[] = [
+                'vehicle_id' => $req->vehicle_id,
+                'hours_meter' => $part[0],
+                'desc' => $part[1],
+                'group_desc' => $part[2],
+                'part_no' => $part[3],
+                'part_desc' => $part[4],
+                'qty' => $part[5],
+                'repl' => $part[6],
+                'unit' => $part[7],
+                'price' => $part[8],
+            ];
+        }
+
+        // simpan ke db
+        foreach ($parts as $partData) {
+            Part::create($partData);
+        }
+
         return redirect()->route('parts.view')->with('success', 'Parts has been added successfully');
     }
 }

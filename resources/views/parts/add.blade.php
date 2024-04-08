@@ -114,32 +114,41 @@
                             </div>
                         </div>
                     </form>
+                    <div class="flex gap-2 w-full mt-8">
+                        <button type="button" class="btn btn-circle" onclick="addRow()">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </button>
+                        <button type="button" id="submit-parts" onclick="submitForm()" class="btn btn-primary text-white xs:w-fit md:w-1/5">Save Changes</button>
+                        <a href="{{ route('parts.view') }}" class="w-full">
+                            <button type="button" class="btn btn-outline btn-primary hover:text-white xs:w-1/2 md:w-1/4">Cancel</button>
+                        </a>
+                    </div>
                 </div>
 
                 <input type="radio" name="parts_tab" role="tab" class="tab bg-transparent border-t-0 border-x-0 focus:ring-0 focus:border-b-black hover:border-b-black focus:ring-transparent xs:w-44 md:w-64 h-12" aria-label="Upload From a File" />
                 <div role="tabpanel" class="tab-content py-5">
                     <div class="w-full">
-                        <form id="upload-parts" method="POST" action="#" enctype="multipart/form-data">
+                        <form id="upload-parts" method="POST" action="{{ route('parts.storeExcel') }}" enctype="multipart/form-data">
+                            @csrf
+                            @method('POST')
+                            <input type="hidden" name="vehicle_id" id="id_vehicle" />
                             <div class="label">
                                 <span class="label-text">Parts Log</span>
                             </div>
                             <input id="input-image-preview" type="file" name="parts_log" class="file-input file-input-bordered file-input-ghost xs:w-full md:w-1/2" accept=".xls, .xlsx" />
                         </form>
+                        <div class="flex gap-2 w-full mt-8">
+                            <button type="button" id="submit-parts" onclick="submitUploadForm()" class="btn btn-primary text-white xs:w-fit md:w-1/5">Save Changes</button>
+                            <a href="{{ route('parts.view') }}" class="w-full">
+                                <button type="button" class="btn btn-outline btn-primary hover:text-white xs:w-1/2 md:w-1/4">Cancel</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="flex gap-2 w-full mt-8">
-                <button type="button" class="btn btn-circle" onclick="addRow()">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                </button>
-                <button type="button" id="submit-parts" onclick="submitForm()" class="btn btn-primary text-white xs:w-fit md:w-1/5">Save Changes</button>
-                <a href="{{ route('parts.view') }}" class="w-full">
-                    <button type="button" class="btn btn-outline btn-primary hover:text-white xs:w-1/2 md:w-1/4">Cancel</button>
-                </a>
-            </div>
         </section>
     </div>
 
@@ -240,11 +249,18 @@
 
         document.getElementById('vehicle-uid').addEventListener('change', function(event) {
             document.getElementById('vehicle-id').value = event.target.value;
+            document.getElementById('id_vehicle').value = event.target.value;
         });
 
         function submitForm() {
             var form = document.getElementById('add-parts');
 
+            // Melakukan submit form
+            form.submit();
+        }
+
+        function submitUploadForm() {
+            var form = document.getElementById('upload-parts');
             // Melakukan submit form
             form.submit();
         }
