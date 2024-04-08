@@ -47,6 +47,7 @@ Route::prefix('parts')->middleware(['auth', 'verified'])->group(function () {
     Route::post('/store', [PartController::class, 'store'])->name('parts.store');
     Route::post('/storeExcel', [PartController::class, 'storeExcel'])->name('parts.storeExcel');
     Route::get('/{vehicle:edit}', [PartController::class, 'index'])->name('parts.edit');
+    Route::delete('/{vehicle}/delete', [PartController::class, 'delete'])->name('parts.delete');
 });
 
 // Route::get('/dashboard', function () {

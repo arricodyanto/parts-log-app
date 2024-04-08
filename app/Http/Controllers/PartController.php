@@ -95,6 +95,11 @@ class PartController extends Controller
 
         return redirect()->route('parts.view')->with('success', 'Parts has been added successfully');
     }
-}
 
+    public function delete(Vehicle $vehicle) {
+        Part::where('vehicle_id', $vehicle->id)->delete();
+
+        return redirect()->route('parts.view')->with('success', 'All parts data from the selected vehicle have been deleted');
+    }
+}
 ?>
