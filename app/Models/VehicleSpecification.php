@@ -15,13 +15,11 @@ class VehicleSpecification extends Model
     protected $fillable = [
         'vehicle_id',
         'specs',
-        'specs_value'
+        'specs_value',
     ];
 
     /**
      * Get the user that owns the VehicleSpecification
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function vehicle(): BelongsTo
     {

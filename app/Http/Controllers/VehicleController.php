@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Vehicle;
 use App\Models\VehicleSpecification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class VehicleController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $vehicles = Vehicle::with('vehicleSpecifications')->paginate(15);
 
         return view('vehicles.view', compact('vehicles'));
     }
 
-    public function add() {
+    public function add()
+    {
         return view('vehicles.add');
     }
 
@@ -55,12 +55,15 @@ class VehicleController extends Controller
         return redirect()->route('vehicles.view')->with('success', 'New vehicle has been added successfully.');
     }
 
-    public function edit(Vehicle $vehicle) {
+    public function edit(Vehicle $vehicle)
+    {
         $specifications = VehicleSpecification::where('vehicle_id', $vehicle->id)->get();
+
         return view('vehicles.edit', compact('vehicle', 'specifications'));
     }
 
-    public function update(Request $request, Vehicle $vehicle) {
+    public function update(Request $request, Vehicle $vehicle)
+    {
         // Validasi form dan update data utama
         $request->validate([
             'name' => 'required|string',
@@ -69,17 +72,17 @@ class VehicleController extends Controller
             'specifications.*.specs' => 'required|string',
             'specifications.*.specs_value' => 'required|string',
         ]);
-    
+
         // vehicle update handller
         $vehicle->name = $request->name;
-        
+
         // update vehicle photo
         if ($request->vehicle_photo != null) {
-            $imagePath = public_path('images/' . $vehicle->vehicle_photo);
+            $imagePath = public_path('images/'.$vehicle->vehicle_photo);
             if (File::exists($imagePath)) {
                 File::delete($imagePath);
             }
-            
+
             // save new vehicle_photo
             $imageFile = $request->file('vehicle_photo');
             $vehicle->vehicle_photo = $imageFile->getClientOriginalName();
@@ -87,15 +90,15 @@ class VehicleController extends Controller
         }
 
         $vehicle->save();
-    
+
         // specs delete handler
         $receivedSpecIds = collect($request->specifications)->pluck('id')->filter(); // Filter ID yang tidak null
         $existingSpecIds = $vehicle->vehicleSpecifications->pluck('id');
-    
+
         $deletedSpecIds = $existingSpecIds->diff($receivedSpecIds);
-    
+
         VehicleSpecification::whereIn('id', $deletedSpecIds)->delete();
-    
+
         // specs update handler
         foreach ($request->specifications as $specData) {
             VehicleSpecification::updateOrCreate(
@@ -107,13 +110,14 @@ class VehicleController extends Controller
                 ]
             );
         }
-    
+
         return redirect()->route('vehicles.edit', $vehicle->id)->with('success', 'Data updated successfully');
     }
 
-    public function delete(Vehicle $vehicle) {
+    public function delete(Vehicle $vehicle)
+    {
         // Delete the vehicle_photo if the exists
-        $imagePath = public_path('images/' . $vehicle->vehicle_photo);
+        $imagePath = public_path('images/'.$vehicle->vehicle_photo);
         if (File::exists($imagePath)) {
             File::delete($imagePath);
         }

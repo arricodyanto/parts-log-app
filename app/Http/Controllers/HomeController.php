@@ -33,7 +33,7 @@ class HomeController extends Controller
             ->setSubtitle('HM '.$selectedHM)
             ->setDataset($sortedParts->pluck('price')->toArray())
             ->setLabels($sortedParts->pluck('part_desc')->toArray());
-        
+
         $barChart = (new LarapexChart)->barChart()
             ->setTitle('Parts Total Price ($)')
             ->setSubtitle('HM '.$selectedHM)
@@ -47,8 +47,7 @@ class HomeController extends Controller
                     })->toArray(),
                 ],
             ]);
-        
+
         return view('home', compact('vehicles', 'selectedVehicle', 'sortedParts', 'hours_meter', 'pieChart', 'barChart'));
     }
-
 }

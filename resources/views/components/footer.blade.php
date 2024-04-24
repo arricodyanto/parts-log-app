@@ -13,7 +13,7 @@
                         <p class="text-sm mb-4">Welcome, </p>
                         <div class="btn btn-ghost btn-circle avatar">
                             <div class="w-10 rounded-full">
-                                <img alt="Avatar" src="{{asset('images/'.Auth::user()->avatar)}}" />
+                                <img alt="Avatar" src="{{asset('images/avatar/'.Auth::user()->avatar)}}" />
                             </div>
                         </div>
                         <p class="text-lg">{{Auth::user()->name}}</p>

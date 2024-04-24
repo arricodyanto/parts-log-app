@@ -28,10 +28,10 @@
     </head>
     <body>
         {{-- preload --}}
-        {{-- <div class="preload">
-            @include('components.preloader')
-        </div>
-        <div class="content"> --}}
+{{--        <div class="preload">--}}
+{{--            @include('components.preloader')--}}
+{{--        </div>--}}
+{{--          <div class="content">--}}
             @include('components.navbar')
             {{-- @include('components.hero') --}}
 
@@ -39,7 +39,7 @@
             @yield('content')
 
             @include('components.footer')
-        {{-- </div> --}}
+{{--         </div>--}}
 
         {{-- js --}}
         @vite('resources/js/app.js')
