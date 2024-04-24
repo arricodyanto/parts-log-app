@@ -45,7 +45,7 @@ class PartController extends Controller
                 'qty' => $part['qty'],
                 'unit' => $part['unit'],
                 'repl' => $part['repl'],
-                'price' => $part['price'],
+                'price' => number_format($part[8], 2, '.', ''),
             ]);
         }
         return redirect()->route('parts.view')->with('success', 'Parts has been added successfully');
@@ -84,7 +84,7 @@ class PartController extends Controller
                 'qty' => $part[5],
                 'repl' => $part[6],
                 'unit' => $part[7],
-                'price' => $part[8],
+                'price' => number_format($part[8], 2, '.', ''),
             ];
         }
 
