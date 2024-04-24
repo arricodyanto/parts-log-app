@@ -12,6 +12,7 @@ class Vehicle extends Model
     use HasFactory, HasUuids, SoftDeletes;
 
     protected $primaryKey = 'id';
+
     protected $fillable = [
         'name',
         'vehicle_photo',

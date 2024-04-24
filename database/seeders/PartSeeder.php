@@ -27,7 +27,7 @@ class PartSeeder extends Seeder
                 'unit' => 'L',
                 'price' => 2.25,
                 'created_at' => date('Y-m-d H:i:s', time()),
-                'updated_at' => date('Y-m-d H:i:s', time())
+                'updated_at' => date('Y-m-d H:i:s', time()),
             ],
             [
                 'id' => Str::uuid(),
@@ -42,7 +42,7 @@ class PartSeeder extends Seeder
                 'unit' => 'PC',
                 'price' => 110.73,
                 'created_at' => date('Y-m-d H:i:s', time()),
-                'updated_at' => date('Y-m-d H:i:s', time())
+                'updated_at' => date('Y-m-d H:i:s', time()),
             ],
             [
                 'id' => Str::uuid(),
@@ -57,7 +57,7 @@ class PartSeeder extends Seeder
                 'unit' => 'PC',
                 'price' => 16.83,
                 'created_at' => date('Y-m-d H:i:s', time()),
-                'updated_at' => date('Y-m-d H:i:s', time())
+                'updated_at' => date('Y-m-d H:i:s', time()),
             ],
             [
                 'id' => Str::uuid(),
@@ -72,7 +72,7 @@ class PartSeeder extends Seeder
                 'unit' => 'L',
                 'price' => 2.25,
                 'created_at' => date('Y-m-d H:i:s', time()),
-                'updated_at' => date('Y-m-d H:i:s', time())
+                'updated_at' => date('Y-m-d H:i:s', time()),
             ],
             [
                 'id' => Str::uuid(),
@@ -87,7 +87,7 @@ class PartSeeder extends Seeder
                 'unit' => 'PC',
                 'price' => 110.73,
                 'created_at' => date('Y-m-d H:i:s', time()),
-                'updated_at' => date('Y-m-d H:i:s', time())
+                'updated_at' => date('Y-m-d H:i:s', time()),
             ],
         ];
 
