@@ -20,7 +20,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
         {{-- tailwind connection --}}
-        @vite('resources/css/app.css')
+{{--        @vite('resources/css/app.css')--}}
+        <link rel="stylesheet" href="{{ asset('css/generated.css') }}">
 
         {{-- jquery for preloader --}}
         <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
@@ -42,7 +43,8 @@
 {{--         </div>--}}
 
         {{-- js --}}
-        @vite('resources/js/app.js')
+        <script src="{{ asset('js/app.js') }}"></script>
+{{--        @vite('resources/js/app.js')--}}
         {{-- @vite('resources/js/vue.js') --}}
     </body>
 </html>
