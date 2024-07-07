@@ -41,11 +41,13 @@ class PartController extends Controller
                 'vehicle_id' => $req->vehicle_id,
                 'hours_meter' => $part['hours_meter'],
                 'desc' => $part['desc'],
+                'group_desc' => $part['group_desc'],
+                'part_no' => $part['part_no'],
                 'part_desc' => $part['part_desc'],
                 'qty' => $part['qty'],
                 'unit' => $part['unit'],
                 'repl' => $part['repl'],
-                'price' => number_format($part[8], 2, '.', ''),
+                'price' => $part['price'],
             ]);
         }
         return redirect()->route('parts.view')->with('success', 'Parts has been added successfully');

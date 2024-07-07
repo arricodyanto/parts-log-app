@@ -65,12 +65,24 @@
                                         </div>
                                         <div>
                                             <div class="label">
+                                                <span class="label-text">Group Description</span>
+                                            </div>
+                                            <textarea class="textarea textarea-bordered w-full" name="parts[0][group_desc]" placeholder="Group Descriptions"></textarea>
+                                        </div>
+                                        <div>
+                                            <div class="label">
                                                 <span class="label-text">Part Description</span>
                                             </div>
                                             <textarea class="textarea textarea-bordered w-full" name="parts[0][part_desc]" placeholder="Part Descriptions"></textarea>
                                         </div>
                                     </div>
                                     <div class="flex flex-col gap-2 w-full">
+                                        <div>
+                                            <div class="label">
+                                                <span class="label-text">Part No</span>
+                                            </div>
+                                            <input type="text" name="parts[0][part_no]" placeholder="Input part no" class="input input-bordered w-full" />
+                                        </div>
                                         <div class="xs:block md:flex md:gap-2 w-full">
                                             <div class="w-full">
                                                 <div class="label">
@@ -186,12 +198,24 @@
                             </div>
                             <div>
                                 <div class="label">
+                                    <span class="label-text">Group Description</span>
+                                </div>
+                                <textarea class="textarea textarea-bordered w-full" name="parts[${partIndex}][group_desc]" placeholder="Group Descriptions"></textarea>
+                            </div>
+                            <div>
+                                <div class="label">
                                     <span class="label-text">Part Description</span>
                                 </div>
                                 <textarea class="textarea textarea-bordered w-full" name="parts[${partIndex}][part_desc]" placeholder="Part Descriptions"></textarea>
                             </div>
                         </div>
                         <div class="flex flex-col gap-2 w-full">
+                            <div>
+                                <div class="label">
+                                    <span class="label-text">Part No</span>
+                                </div>
+                                <input type="text" name="parts[${partIndex}][part_no]" placeholder="Input part no" class="input input-bordered w-full" />
+                            </div>
                             <div class="xs:block md:flex md:gap-2 w-full">
                                 <div class="w-full">
                                     <div class="label">
