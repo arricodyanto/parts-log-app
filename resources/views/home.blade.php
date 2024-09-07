@@ -167,22 +167,78 @@
               </table>
             </div>
           </section>
-          <section id="charts" class="mt-8">
-            <div class="md:grid md:grid-cols-7 gap-4 mb-4">
-              <div class="rounded-lg mx-auto p-6 mb-2 w-full border col-span-3">
-                  {!! $pieChart->container() !!}
-              </div>
-              <div class="rounded-lg mx-auto p-6 mb-2 w-full border col-span-4">
-                  {!! $barChart->container() !!}
-              </div>
-          </div>
-          </section>
+            <section id="charts" class="mt-8">
+                <div class="md:grid md:grid-cols-7 gap-4 mb-4">
+                    <div class="rounded-lg mx-auto p-6 mb-2 w-full border col-span-3">
+                        <canvas id="pie-chart"></canvas>
+                    </div>
+                    <div class="rounded-lg mx-auto p-6 mb-2 w-full border col-span-4">
+                        <canvas id="bar-chart"></canvas>
+                    </div>
+                </div>
+            </section>
         </div>
     </section>
 
-    <script src="{{ $pieChart->cdn() }}"></script>
-    <script src="{{ $barChart->cdn() }}"></script>
+    <!-- Load local Chart.js script -->
+    <script src="{{ asset('js/chart.umd.js') }}"></script>
 
-    {{ $pieChart->script() }}
-    {{ $barChart->script() }}
+    <!-- Initialize Charts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Pie Chart
+            var pieCtx = document.getElementById('pie-chart').getContext('2d');
+            var pieChart = new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    {{--labels: @json($pieChartData['labels']),--}}
+                    datasets: [{
+                        label: 'Parts Price ($)',
+                        data: @json($pieChartData['data']),
+                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Parts Price ($)'
+                        },
+                        subtitle: {
+                            display: true,
+                            text: 'HM {{$selectedHM}}'
+                        }
+                    }
+                }
+            });
+
+            // Bar Chart
+            var barCtx = document.getElementById('bar-chart').getContext('2d');
+            var barChart = new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: @json($barChartData['labels']),
+                    datasets: [{
+                        label: '($) Total Price',
+                        data: @json($barChartData['data']),
+                        backgroundColor: '#36A2EB',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Parts Total Price ($)'
+                        },
+                        subtitle: {
+                            display: true,
+                            text: 'HM {{$selectedHM}}'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 @endsection
