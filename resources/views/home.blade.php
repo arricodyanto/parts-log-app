@@ -145,7 +145,7 @@
                   @if (count($sortedParts) > 0)
                     @foreach ($sortedParts as $index => $part)
                       <tr class="hover">
-                          <td class="text-center">{{$index + 1}}</td>
+                          <td class="text-center">{{$part->rownumber}}</td>
                           <td class="text-center">HM {{$part->hours_meter}}</td>
                           <td>{{$part->desc}}</td>
                           <td>{{$part->group_desc}}</td>
@@ -154,10 +154,15 @@
                           <td class="text-center">{{$part->qty}}</td>
                           <td>{{$part->repl}}%</td>
                           <td class="text-center">{{$part->unit}}</td>
-                          <td class="text-center">${{$part->price}}</td>
-                          <td class="text-center">${{$part->qty * $part->price}}</td>
+                          <td class="text-right">${{$part->price}}</td>
+                          <td class="text-right">${{$part->qty * $part->price}}</td>
                       </tr>
                     @endforeach
+                    <tr class="font-semibold">
+                        <td colspan="9"></td>
+                        <td>Total</td>
+                        <td class="text-right">${{$totalExpenses}}</td>
+                    </tr>
                   @else
                     <tr>
                       <td colspan="11" class="text-center">no data</td>
@@ -165,6 +170,11 @@
                   @endif
                 </tbody>
               </table>
+            </div>
+
+            <!-- Pagination Links -->
+            <div class="mt-3">
+                {{ $sortedParts->links('components.pagination') }}
             </div>
           </section>
             <section id="charts" class="mt-8">
@@ -191,9 +201,9 @@
             var pieChart = new Chart(pieCtx, {
                 type: 'pie',
                 data: {
-                    {{--labels: @json($pieChartData['labels']),--}}
+                    labels: @json($pieChartData['labels']),
                     datasets: [{
-                        label: 'Parts Price ($)',
+                        {{--label: @json($pieChartData['labels']),--}}
                         data: @json($pieChartData['data']),
                         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
                     }]
@@ -201,6 +211,9 @@
                 options: {
                     responsive: true,
                     plugins: {
+                        legend: {
+                            display: false // Disable the legend
+                        },
                         title: {
                             display: true,
                             text: 'Parts Price ($)'
