@@ -1,10 +1,10 @@
-import "./bootstrap";
+// import "./bootstrap";
 
-import Alpine from "alpinejs";
+// import Alpine from "alpinejs";
 
-window.Alpine = Alpine;
+// window.Alpine = Alpine;
 
-Alpine.start();
+// Alpine.start();
 
 // preloader
 $(function () {
@@ -18,7 +18,6 @@ $(function () {
 const navbar = document.getElementById("navbar");
 window.onscroll = () => {
     if (window.scrollY > 50) {
-        console.log("window scrolled")
         navbar.classList.add("bg-white", "backdrop-blur-md");
     } else {
         navbar.classList.remove("bg-white", "backdrop-blur-md");
@@ -26,11 +25,15 @@ window.onscroll = () => {
 };
 
 // image preview
-let img = document.getElementById("image-preview");
-let input = document.getElementById("input-image-preview");
+document.addEventListener('DOMContentLoaded', () => {
+    let img = document.getElementById("image-preview");
+    let input = document.getElementById("input-image-preview");
 
-input.onchange = (e) => {
-    if (input.files[0]) {
-        img.src = URL.createObjectURL(input.files[0]);
+    if (input) {
+        input.onchange = (e) => {
+            if (input.files[0]) {
+                img.src = URL.createObjectURL(input.files[0]);
+            }
+        };
     }
-};
+});

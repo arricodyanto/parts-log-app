@@ -145,7 +145,7 @@
                   @if (count($sortedParts) > 0)
                     @foreach ($sortedParts as $index => $part)
                       <tr class="hover">
-                          <td class="text-center">{{$index + 1}}</td>
+                          <td class="text-center">{{$part->rownumber}}</td>
                           <td class="text-center">HM {{$part->hours_meter}}</td>
                           <td>{{$part->desc}}</td>
                           <td>{{$part->group_desc}}</td>
@@ -154,10 +154,15 @@
                           <td class="text-center">{{$part->qty}}</td>
                           <td>{{$part->repl}}%</td>
                           <td class="text-center">{{$part->unit}}</td>
-                          <td class="text-center">${{$part->price}}</td>
-                          <td class="text-center">${{$part->qty * $part->price}}</td>
+                          <td class="text-right">${{$part->price}}</td>
+                          <td class="text-right">${{$part->qty * $part->price}}</td>
                       </tr>
                     @endforeach
+                    <tr class="font-semibold">
+                        <td colspan="9"></td>
+                        <td>Total</td>
+                        <td class="text-right">${{$totalExpenses}}</td>
+                    </tr>
                   @else
                     <tr>
                       <td colspan="11" class="text-center">no data</td>
@@ -166,23 +171,87 @@
                 </tbody>
               </table>
             </div>
+
+            <!-- Pagination Links -->
+            <div class="mt-3">
+                {{ $sortedParts->links('components.pagination') }}
+            </div>
           </section>
-          <section id="charts" class="mt-8">
-            <div class="md:grid md:grid-cols-7 gap-4 mb-4">
-              <div class="rounded-lg mx-auto p-6 mb-2 w-full border col-span-3">
-                  {!! $pieChart->container() !!}
-              </div>
-              <div class="rounded-lg mx-auto p-6 mb-2 w-full border col-span-4">
-                  {!! $barChart->container() !!}
-              </div>
-          </div>
-          </section>
+            <section id="charts" class="mt-8">
+                <div class="md:grid md:grid-cols-7 gap-4 mb-4">
+                    <div class="rounded-lg mx-auto p-6 mb-2 w-full border col-span-3">
+                        <canvas id="pie-chart"></canvas>
+                    </div>
+                    <div class="rounded-lg mx-auto p-6 mb-2 w-full border col-span-4">
+                        <canvas id="bar-chart"></canvas>
+                    </div>
+                </div>
+            </section>
         </div>
     </section>
 
-    <script src="{{ $pieChart->cdn() }}"></script>
-    <script src="{{ $barChart->cdn() }}"></script>
+    <!-- Load local Chart.js script -->
+    <script src="{{ asset('js/chart.umd.js') }}"></script>
 
-    {{ $pieChart->script() }}
-    {{ $barChart->script() }}
+    <!-- Initialize Charts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Pie Chart
+            var pieCtx = document.getElementById('pie-chart').getContext('2d');
+            var pieChart = new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    labels: @json($pieChartData['labels']),
+                    datasets: [{
+                        {{--label: @json($pieChartData['labels']),--}}
+                        data: @json($pieChartData['data']),
+                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false // Disable the legend
+                        },
+                        title: {
+                            display: true,
+                            text: 'Parts Price ($)'
+                        },
+                        subtitle: {
+                            display: true,
+                            text: 'HM {{$selectedHM}}'
+                        }
+                    }
+                }
+            });
+
+            // Bar Chart
+            var barCtx = document.getElementById('bar-chart').getContext('2d');
+            var barChart = new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: @json($barChartData['labels']),
+                    datasets: [{
+                        label: '($) Total Price',
+                        data: @json($barChartData['data']),
+                        backgroundColor: '#36A2EB',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Parts Total Price ($)'
+                        },
+                        subtitle: {
+                            display: true,
+                            text: 'HM {{$selectedHM}}'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 @endsection
